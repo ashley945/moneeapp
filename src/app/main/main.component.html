@@ -1,0 +1,69 @@
+<!-- <div style="width: 100%; height: 50px; background: pink;">
+  <span>메뉴1</span>
+  <span>메뉴2</span>
+  <span>메뉴3</span>
+</div> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="main-wrapper">
+  <h2>MONEEBOOK 1</h2>
+  <div>
+    <div>
+      STORY
+    </div>
+    <textarea rows="4" nz-input [(ngModel)]="boardForm.title"></textarea>
+  </div>
+  <div>
+    <div>
+      User Name
+    </div>
+    <textarea rows="1" nz-input [(ngModel)]="boardForm.writer"></textarea>
+  </div>
+  <button type="button" (click)="addBoard()">Post</button>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- Title: <input type="text" [(ngModel)]="boardForm.title" autofocus> <br/>
+Name: <input type="text" [(ngModel)]="boardForm.writer"><br/> -->
+
+
+
+<table border="4">
+	<tr>
+		<td style="width: 50px">No.</td>
+		<td style="width: 200px">Title</td>
+		<td style="width: 70px">Name</td>
+		<td style="width: 50px"></td>
+    <td style="width: 50px"></td>
+	</tr>
+	<tr *ngFor="let item of boardlist; let inx = index">
+		<td>{{inx+1}}</td>
+		<td>{{item.title}}</td>
+		<td>{{item.writer}}</td>
+		<td><button type="button" (click)="removeBoard(item.id)">삭제</button></td>
+    <td><button type="button" (click)="removeBoard(item.id)">삭제</button></td>
+	</tr>
+</table>
+
+
+<nz-layout>
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item>nav 1</li>
+      <li nz-menu-item>nav 2</li>
+      <li nz-menu-item>nav 3</li>
+    </ul>
+  </nz-header>
+  <nz-content>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb-item>List</nz-breadcrumb-item>
+      <nz-breadcrumb-item>App</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="inner-content">Content</div>
+  </nz-content>
+  <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>
+
