@@ -1,4 +1,13 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<nz-layout>
+  <nz-header class="menu">
+    <span class="logo">MONEE BOOK</span>
+    <nz-divider nzType="vertical"></nz-divider>
+    <span [routerLink]="['/login']">로그인 화면으로</span>
+    <nz-divider nzType="vertical"></nz-divider>
+    <span [routerLink]="['/main']">메인 화면으로</span>
+  </nz-header>
+</nz-layout>
+
+<div class="app-wrapper">
+  <router-outlet></router-outlet>
+</div>

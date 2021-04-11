@@ -1,69 +1,69 @@
-<!-- <div style="width: 100%; height: 50px; background: pink;">
-  <span>메뉴1</span>
-  <span>메뉴2</span>
-  <span>메뉴3</span>
-</div> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div class="main-wrapper">
-  <h2>MONEEBOOK 1</h2>
   <div>
-    <div>
-      STORY
+    <h2>MONEE BOOK</h2>
+
+    <div class="text-box">
+      <div>
+        User Name
+      </div>
+      <textarea rows="1" nz-input [(ngModel)]="cardForm.writer" placeholder="Enter your Name"></textarea>
     </div>
-    <textarea rows="4" nz-input [(ngModel)]="boardForm.title"></textarea>
-  </div>
-  <div>
-    <div>
-      User Name
+
+    <div class="text-box">
+      <div>
+        User's Story
+      </div>
+      <textarea rows="5" nz-input [(ngModel)]="cardForm.title" placeholder="Tell me your Story"></textarea>
     </div>
-    <textarea rows="1" nz-input [(ngModel)]="boardForm.writer"></textarea>
+
+    <button class="text-box" nz-button nzType="primary" nzBlock  (click)="addCard()">Post!</button>
+    <router-outlet></router-outlet>
   </div>
-  <button type="button" (click)="addBoard()">Post</button>
-  <router-outlet></router-outlet>
+
+    <nz-card nzTitle="MONEE BOOK FEED / There are {{ cardlist.length }} feeds.">
+
+      <div *ngFor="let card of cardlist; let inx = index" class="card-wrapper">
+        <nz-card nzType="inner" nzTitle="{{inx+1}}. {{card.writer}}" [nzExtra]="extraTemplate">
+          <p>{{card.title}}</p>
+          <a (click)="openComment()">Open / Close Comment Box</a>
+          <p style="float: right; font-weight: 400;">There are {{ card.commentList.length }} comments.</p>
+
+
+          <div *ngFor="let data of card.commentList; let i = index">
+            <nz-comment [nzAuthor]="data.commentAuthor" [nzDatetime]="data.commentDisplayTime">
+              <nz-comment-content>
+                <p>{{ data.commentText }}</p>
+              </nz-comment-content>
+            </nz-comment>
+          </div>
+
+          <nz-comment *ngIf="isShowCommentBox">
+            <nz-comment-content>
+              <nz-form-item style="position: relative;">
+                Author <textarea [(ngModel)]="commentForm.commentAuthor" nz-input rows="1" placeholder="Enter your Name" ></textarea>
+                Commnet <textarea [(ngModel)]="commentForm.commentText" nz-input rows="1" placeholder="Enter your Opinion"></textarea>
+              </nz-form-item>
+              <nz-form-item>
+                <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!commentForm.commentText" (click)="handleSubmit(inx)">
+                  Add Comment
+                </button>
+              </nz-form-item>
+            </nz-comment-content>
+          </nz-comment>
+
+        </nz-card>
+        <ng-template #extraTemplate>
+          <div class='like'>
+            <i class='like-button' nz-icon nzType="heart" (click)="likeCard(card.id)"></i>
+            <span>{{likeCount}} Likes.</span>
+          </div>
+          <div class="delete">
+            <button nz-button nzType="default" nzBlock (click)="removeCard(card.id)">삭제</button>
+          </div>
+        </ng-template>
+      </div>
+    </nz-card>
 </div>
 
 
-<!-- Title: <input type="text" [(ngModel)]="boardForm.title" autofocus> <br/>
-Name: <input type="text" [(ngModel)]="boardForm.writer"><br/> -->
-
-
-
-<table border="4">
-	<tr>
-		<td style="width: 50px">No.</td>
-		<td style="width: 200px">Title</td>
-		<td style="width: 70px">Name</td>
-		<td style="width: 50px"></td>
-    <td style="width: 50px"></td>
-	</tr>
-	<tr *ngFor="let item of boardlist; let inx = index">
-		<td>{{inx+1}}</td>
-		<td>{{item.title}}</td>
-		<td>{{item.writer}}</td>
-		<td><button type="button" (click)="removeBoard(item.id)">삭제</button></td>
-    <td><button type="button" (click)="removeBoard(item.id)">삭제</button></td>
-	</tr>
-</table>
-
-
-<nz-layout>
-  <nz-header>
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item>nav 1</li>
-      <li nz-menu-item>nav 2</li>
-      <li nz-menu-item>nav 3</li>
-    </ul>
-  </nz-header>
-  <nz-content>
-    <nz-breadcrumb>
-      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-      <nz-breadcrumb-item>List</nz-breadcrumb-item>
-      <nz-breadcrumb-item>App</nz-breadcrumb-item>
-    </nz-breadcrumb>
-    <div class="inner-content">Content</div>
-  </nz-content>
-  <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
-</nz-layout>
-
+<nz-footer>Ant Design ©2020 Implement By Angular & Ashley Park^^</nz-footer>

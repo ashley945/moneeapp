@@ -1,4 +1,48 @@
+.main-wrapper {
+  width: 50%;
+  margin: auto;
+}
+
+.text-box{
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+
 .icons-list > .anticon {
   margin-right: 6px;
   font-size: 24px;
+}
+
+.card-wrapper{
+  position: relative;
+  margin: 5px;
+
+  .card{
+    position: relative;
+    margin: 10px;
+    align-items: center;
+    border-width: 5px;
+    border-color: #ECECEC;
+
+
+  }
+}
+
+.like{
+  float: left;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-weight: 600;
+
+
+  .like-button{
+    margin-right: 10px;
+  }
+}
+
+.delete{
+  float: left;
 }
